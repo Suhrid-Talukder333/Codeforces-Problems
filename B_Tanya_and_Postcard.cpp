@@ -64,51 +64,53 @@ template<class T>inline bool read(T &x){int c=gc();int sgn=1;while(~c&&c<'0'||c>
 //int dx[]={2,1,-1,-2,-1,1};int dy[]={0,1,1,0,-1,-1}; //Hexagonal Direction
 //freopen("input.txt", "r", stdin);
 //freopen("output.txt", "w", stdout);
-
+int check[123];
 int main()
 {
-    int sum,limit;
-    cin>>sum>>limit;
+    string ans; cin>>ans;
+    string q; cin>>q;
+    int y=0,w=0;
+    int len=ans.size();
 
-    vector<pair<int,int>>pack;
-    for(int i=1; i<=limit; i++)
+    for(int i=0; q[i]!='\0'; i++)
     {
-        int p=1;
-        for(int j=0; j<32; j++)
+        check[q[i]]++;
+    }
+
+    for(int i=0; i<len; i++)
+    {
+        if(check[ans[i]])
         {
-            if(i&1<<j)
+            y++;
+            check[ans[i]]--;
+            ans[i]='1';
+        }
+    }
+
+    for(int i=0; i<len; i++)
+    {
+        if(ans[i]!='1')
+        {
+            char j;
+            if(ans[i]<'a')
             {
-                pack.push_back({i,p});
-                break;
+                j=ans[i]+'a'-'A';
             }
-            p*=2;
+            else
+            {
+                j=ans[i]+'A'-'a';
+            }
+            
+            if(check[j])    
+            {
+                w++;
+                check[j]--;
+            }
         }
     }
-    sort(pack.begin(),pack.end());
-    vector<int>ans;
-    for(int i=pack.size()-1; i>=0; i--)
-    {
-        if(pack[i].second<=sum)
-        {
-            ans.push_back(pack[i].first);
-            sum-=pack[i].second;
-        }
-        if(sum==0)
-        {
-            break;
-        }
-    }
-    if(sum==0)
-    {
-        cout<<ans.size()<<endl;
-        for(int i=0; i<(int)ans.size(); i++)
-        {
-            cout<<ans[i]<<" ";
-        }
-    }
-    else
-    {
-        cout<<-1;
-    }
-    
+    // if(y+w>len)
+    // {
+    //     w=w-(y+w-len);
+    // }
+    cout<<y<<" "<<w<<endl;
 }
