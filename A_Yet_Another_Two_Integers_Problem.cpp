@@ -14,31 +14,28 @@ int main()
 
         if (a < b)
         {
-            while (a != b)
-            {
-                if (a + k <= b)
-                {
-                    a += k;
-                    ans++;
+            int def = b - a;
+            while(def) {
+                if(def>=k) {
+                    ans += def / k;
+                    def %= k;
                 }
-                else
-                {
+                else {
                     k--;
                 }
             }
         }
         else
         {
-            while (a != b)
+            int def = a - b;
+            while (def)
             {
-
-                if (a - k >= b)
+                if (def >= k)
                 {
-                    a -= k;
-                    ans++;
+                    ans += def / k;
+                    def %= k;
                 }
-                else
-                {
+                else {
                     k--;
                 }
             }
