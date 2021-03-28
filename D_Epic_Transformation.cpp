@@ -1,22 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int N = 2e5 + 5;
-long long n, t, i, a[N], ans;
+
+
 int main()
 {
+    long long t;
     cin >> t;
     while (t--)
     {
+        long long n;
         cin >> n;
-        for (i = 0; i < n; i++)
+        long long arr[n];
+        for (int i = 0; i < n; i++)
         {
-            cin >> a[i];
+            cin >> arr[i];
         }
-        sort(a, a + n);
-        ans = n;
-        for (i = 0; i < n / 2; i++)
+        sort(arr, arr + n);
+        long long ans = n;
+        for (int i = 0; i < n / 2; i++)
         {
-            if (a[i] != a[i + (n + 1) / 2])
+            if (arr[i] != arr[i + (n + 1) / 2])
                 ans -= 2;
         }
         cout << ans << endl;
