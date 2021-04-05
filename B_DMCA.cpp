@@ -16,7 +16,7 @@ int main()
 {
     int a;
     cin >> a;
-    while (a > 10)
+    while (a >= 10)
     {
         a = sum(a);
     }
