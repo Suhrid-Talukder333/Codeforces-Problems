@@ -1,3 +1,6 @@
+//DSU Way
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
